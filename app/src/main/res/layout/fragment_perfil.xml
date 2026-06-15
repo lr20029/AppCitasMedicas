@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/android:colorBackground">
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:background="@drawable/bg_card_gradient" android:orientation="vertical"
+            android:gravity="center" android:padding="32dp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/ivAvatarPerfil" android:layout_width="80dp"
+                android:layout_height="80dp" android:src="@drawable/ic_person"
+                android:background="@drawable/bg_avatar_circle" android:padding="16dp"
+                android:layout_marginBottom="12dp"/>
+
+            <TextView android:id="@+id/tvNombrePerfil" android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:text="Dr. Usuario"
+                android:textColor="@color/white" android:textSize="20sp" android:textStyle="bold"/>
+
+            <TextView android:id="@+id/tvEspecialidadPerfil" android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:text="Especialidad"
+                android:textColor="#B2FFFFFF" android:textSize="13sp"/>
+
+            <TextView android:id="@+id/tvEmailPerfil" android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:text="correo@mail.com"
+                android:textColor="#80FFFFFF" android:textSize="12sp" android:layout_marginTop="4dp"/>
+        </LinearLayout>
+
+        <androidx.cardview.widget.CardView style="@style/MediCareCard"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_margin="16dp" android:layout_marginTop="-16dp">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical" android:padding="20dp">
+
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Actualizar perfil" android:textSize="15sp" android:textStyle="bold"
+                    android:textColor="?attr/colorOnSurface" android:layout_marginBottom="12dp"/>
+
+                <com.google.android.material.textfield.TextInputLayout style="@style/MediCareInput"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:hint="Nuevo nombre" android:layout_marginBottom="12dp">
+                    <com.google.android.material.textfield.TextInputEditText android:id="@+id/etEditNombre"
+                        android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:inputType="textPersonName"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout style="@style/MediCareInput"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:hint="Especialidad" android:layout_marginBottom="16dp">
+                    <com.google.android.material.textfield.TextInputEditText android:id="@+id/etEditEspecialidad"
+                        android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:inputType="textCapWords"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <Button android:id="@+id/btnActualizarPerfil" style="@style/MediCareButton"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="Guardar cambios"/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView style="@style/MediCareCard"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginStart="16dp" android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical" android:padding="20dp">
+
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Apariencia" android:textSize="15sp" android:textStyle="bold"
+                    android:textColor="?attr/colorOnSurface" android:layout_marginBottom="12dp"/>
+
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="horizontal" android:gravity="center_vertical">
+                    <ImageView android:layout_width="24dp" android:layout_height="24dp"
+                        android:src="@drawable/ic_dark_mode"/>
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:text="Modo oscuro"
+                        android:textSize="14sp" android:textColor="?attr/colorOnSurface"
+                        android:layout_marginStart="12dp"/>
+                    <com.google.android.material.switchmaterial.SwitchMaterial
+                        android:id="@+id/switchDarkMode"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <Button android:id="@+id/btnLogout"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginStart="16dp" android:layout_marginEnd="16dp"
+            android:layout_marginBottom="80dp" android:text="Cerrar sesión"
+            android:textColor="@color/status_cancelled"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+    </LinearLayout>
+</ScrollView>

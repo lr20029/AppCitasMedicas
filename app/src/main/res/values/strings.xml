@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">AppCitasMedicas</string>
+    <string name="app_subtitle">Gestión de Citas y Expedientes</string>
+
+    <string name="login_title">Iniciar Sesión</string>
+    <string name="register_title">Crear Cuenta</string>
+    <string name="email_hint">Correo electrónico</string>
+    <string name="password_hint">Contraseña</string>
+    <string name="name_hint">Nombre completo</string>
+    <string name="btn_login">Ingresar</string>
+    <string name="btn_register">Registrarse</string>
+    <string name="no_account">¿No tienes cuenta? Regístrate</string>
+    <string name="have_account">¿Ya tienes cuenta? Inicia sesión</string>
+
+    <string name="nav_dashboard">Inicio</string>
+    <string name="nav_citas">Citas</string>
+    <string name="nav_pacientes">Pacientes</string>
+    <string name="nav_expedientes">Expedientes</string>
+    <string name="nav_perfil">Perfil</string>
+
+    <string name="add">Agregar</string>
+    <string name="edit">Editar</string>
+    <string name="delete">Eliminar</string>
+    <string name="save">Guardar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="confirm">Confirmar</string>
+    <string name="search_hint">Buscar…</string>
+
+    <string name="delete_confirm">¿Deseas eliminar este registro?</string>
+    <string name="logout_confirm">¿Deseas cerrar sesión?</string>
+    <string name="success_save">Guardado correctamente</string>
+    <string name="error_empty">Por favor, completa todos los campos</string>
+    <string name="error_login">Credenciales incorrectas</string>
+    <string name="error_email_exists">El correo ya está registrado</string>
+</resources>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MediCareCard"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp">
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="vertical" android:padding="14dp">
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="horizontal" android:gravity="center_vertical">
+
+            <ImageView android:layout_width="40dp" android:layout_height="40dp"
+                android:src="@drawable/ic_folder" android:background="@drawable/bg_rounded_accent"
+                android:padding="8dp"/>
+
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_weight="1" android:orientation="vertical" android:layout_marginStart="12dp">
+                <TextView android:id="@+id/tvNumeroExpediente" android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:text="EXP-000"
+                    android:textSize="14sp" android:textStyle="bold" android:textColor="?attr/colorPrimary"/>
+                <TextView android:id="@+id/tvFechaApertura" android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:text="Abierto: 01/01/2025"
+                    android:textSize="11sp" android:textColor="?attr/colorOnSurface"/>
+            </LinearLayout>
+
+            <TextView android:id="@+id/tvImc" android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:text="IMC: -"
+                android:textSize="11sp" android:textStyle="bold"
+                android:textColor="@color/status_confirmed"
+                android:paddingStart="8dp" android:paddingEnd="8dp"
+                android:paddingTop="4dp" android:paddingBottom="4dp"
+                android:background="@drawable/bg_status_confirmed"/>
+        </LinearLayout>
+
+        <TextView android:id="@+id/tvEnfCronicas" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="Sin enfermedades crónicas"
+            android:textSize="12sp" android:textColor="?attr/colorOnSurface"
+            android:layout_marginTop="8dp" android:maxLines="2" android:ellipsize="end"/>
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="horizontal" android:gravity="end" android:layout_marginTop="8dp">
+            <ImageButton android:id="@+id/btnEditExpediente" android:layout_width="36dp"
+                android:layout_height="36dp" android:src="@drawable/ic_edit"
+                android:background="@drawable/bg_rounded_accent" android:padding="6dp"
+                android:layout_marginEnd="8dp" android:contentDescription="Editar"/>
+            <ImageButton android:id="@+id/btnDeleteExpediente" android:layout_width="36dp"
+                android:layout_height="36dp" android:src="@drawable/ic_delete"
+                android:background="@drawable/bg_status_cancelled" android:padding="6dp"
+                android:contentDescription="Eliminar"/>
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/MediCareCard"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp">
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="vertical" android:padding="14dp">
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="horizontal" android:gravity="center_vertical">
+
+            <ImageView android:layout_width="36dp" android:layout_height="36dp"
+                android:src="@drawable/ic_person" android:background="@drawable/bg_avatar_circle"
+                android:padding="6dp"/>
+
+            <TextView android:id="@+id/tvPaciente" android:layout_width="0dp"
+                android:layout_height="wrap_content" android:layout_weight="1"
+                android:text="Nombre Paciente" android:textSize="15sp" android:textStyle="bold"
+                android:textColor="?attr/colorOnSurface" android:layout_marginStart="10dp"/>
+
+            <TextView android:id="@+id/tvEstado" android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:text="PENDIENTE"
+                android:textSize="10sp" android:textStyle="bold"
+                android:paddingStart="10dp" android:paddingEnd="10dp"
+                android:paddingTop="4dp" android:paddingBottom="4dp"
+                android:background="@drawable/bg_status_pending" android:textColor="#E65100"/>
+        </LinearLayout>
+
+        <TextView android:id="@+id/tvFechaHora" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:text="01/01/2025 • 09:00"
+            android:textSize="12sp" android:textColor="?attr/colorPrimary"
+            android:layout_marginTop="8dp" android:layout_marginStart="46dp"/>
+
+        <TextView android:id="@+id/tvMotivo" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="Motivo de consulta"
+            android:textSize="13sp" android:textColor="?attr/colorOnSurface"
+            android:layout_marginTop="2dp" android:layout_marginStart="46dp"
+            android:maxLines="2" android:ellipsize="end"/>
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="horizontal" android:gravity="end" android:layout_marginTop="8dp">
+
+            <ImageButton android:id="@+id/btnEditCita" android:layout_width="36dp"
+                android:layout_height="36dp" android:src="@drawable/ic_edit"
+                android:background="@drawable/bg_rounded_accent" android:padding="6dp"
+                android:layout_marginEnd="8dp" android:contentDescription="Editar"/>
+
+            <ImageButton android:id="@+id/btnDeleteCita" android:layout_width="36dp"
+                android:layout_height="36dp" android:src="@drawable/ic_delete"
+                android:background="@drawable/bg_status_cancelled" android:padding="6dp"
+                android:contentDescription="Eliminar"/>
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

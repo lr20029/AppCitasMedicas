@@ -27,13 +27,14 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        prefs = new PrefsManager(this);
+        int modo = prefs.isDarkMode() ? AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_NO;
+        if (AppCompatDelegate.getDefaultNightMode() != modo) {
+            AppCompatDelegate.setDefaultNightMode(modo);
+        }
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        prefs = new PrefsManager(this);
-
-        AppCompatDelegate.setDefaultNightMode(
-                prefs.isDarkMode() ? AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_NO);
 
         setSupportActionBar(binding.toolbar);
 
@@ -50,6 +51,17 @@ public class MainActivity extends AppCompatActivity
         if (tvNombre != null) tvNombre.setText(prefs.getUserName());
         if (tvEmail != null) tvEmail.setText(prefs.getUserEmail());
         if (tvEsp != null) tvEsp.setText(prefs.getUserEspecialidad());
+
+        com.google.android.material.switchmaterial.SwitchMaterial switchDark =
+                binding.getRoot().findViewById(R.id.switchDarkModeDrawer);
+        if (switchDark != null) {
+            switchDark.setChecked(prefs.isDarkMode());
+            switchDark.setOnCheckedChangeListener((b, isChecked) -> {
+                prefs.setDarkMode(isChecked);
+                AppCompatDelegate.setDefaultNightMode(isChecked ?
+                        AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_NO);
+            });
+        }
 
         binding.bottomNav.setOnItemSelectedListener(item -> {
             int id = item.getItemId();

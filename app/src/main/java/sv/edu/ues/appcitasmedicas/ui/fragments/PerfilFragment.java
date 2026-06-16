@@ -7,7 +7,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 import java.util.concurrent.Executors;
 import sv.edu.ues.appcitasmedicas.R;
@@ -38,14 +37,6 @@ public class PerfilFragment extends Fragment {
         binding.tvNombrePerfil.setText(prefs.getUserName());
         binding.tvEmailPerfil.setText(prefs.getUserEmail());
         binding.tvEspecialidadPerfil.setText(prefs.getUserEspecialidad());
-
-        binding.switchDarkMode.setOnCheckedChangeListener(null);
-        binding.switchDarkMode.setChecked(prefs.isDarkMode());
-        binding.switchDarkMode.setOnCheckedChangeListener((b, isChecked) -> {
-            prefs.setDarkMode(isChecked);
-            AppCompatDelegate.setDefaultNightMode(isChecked ?
-                    AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_NO);
-        });
 
         binding.btnActualizarPerfil.setOnClickListener(v -> updateProfile());
         binding.btnLogout.setOnClickListener(v ->

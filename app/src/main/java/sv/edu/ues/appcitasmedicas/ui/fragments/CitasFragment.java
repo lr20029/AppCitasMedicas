@@ -129,52 +129,47 @@ public class CitasFragment extends Fragment implements CitasAdapter.OnCitaClickL
             ).show();
         });
 
-        // Spinner pacientes
+        // AutoComplete paciente
         List<String> nombres = new ArrayList<>();
-        nombres.add("Seleccionar paciente...");
-        int selIdx = 0;
+        int selIdx = -1;
         for (int i = 0; i < pacientes.size(); i++) {
             PacienteEntity p = pacientes.get(i);
             nombres.add(p.nombre + " " + p.apellido);
-            if (isEdit && p.id == cita.pacienteId) selIdx = i + 1;
+            if (isEdit && p.id == cita.pacienteId) selIdx = i;
         }
         ArrayAdapter<String> spa = new ArrayAdapter<>(requireContext(),
-                android.R.layout.simple_spinner_item, nombres);
-        spa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                android.R.layout.simple_spinner_dropdown_item, nombres);
         d.spPaciente.setAdapter(spa);
-        if (isEdit) d.spPaciente.setSelection(selIdx);
+        if (isEdit && selIdx >= 0) d.spPaciente.setText(nombres.get(selIdx), false);
 
-        // Spinner estados
+        // AutoComplete estado
         String[] estados = {"PENDIENTE", "CONFIRMADA", "CANCELADA", "COMPLETADA"};
         ArrayAdapter<String> ea = new ArrayAdapter<>(requireContext(),
-                android.R.layout.simple_spinner_item, estados);
-        ea.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                android.R.layout.simple_spinner_dropdown_item, estados);
         d.spEstado.setAdapter(ea);
-        if (isEdit) {
-            for (int i = 0; i < estados.length; i++) {
-                if (estados[i].equals(cita.estado)) {
-                    d.spEstado.setSelection(i);
-                    break;
-                }
-            }
-        }
+        if (isEdit) d.spEstado.setText(cita.estado, false);
 
         new AlertDialog.Builder(requireContext(), R.style.MediCareDialog)
                 .setTitle(isEdit ? "Editar Cita" : "Nueva Cita")
                 .setView(d.getRoot())
                 .setPositiveButton(getString(R.string.save), (dl, w) -> {
                     String motivo = d.etMotivo.getText().toString().trim();
-                    int pIdx = d.spPaciente.getSelectedItemPosition();
+                    String pacNombre = d.spPaciente.getText().toString().trim();
+                    int pIdx = -1;
+                    for (int i = 0; i < pacientes.size(); i++) {
+                        String n = pacientes.get(i).nombre + " " + pacientes.get(i).apellido;
+                        if (n.equals(pacNombre)) { pIdx = i; break; }
+                    }
 
                     if (motivo.isEmpty() || fechaSeleccionada[0].isEmpty()
-                            || horaSeleccionada[0].isEmpty() || pIdx == 0) {
+                            || horaSeleccionada[0].isEmpty() || pIdx < 0) {
                         Toast.makeText(requireContext(),
                                 getString(R.string.error_empty),
                                 Toast.LENGTH_SHORT).show();
                         return;
                     }
 
-                    PacienteEntity ps = pacientes.get(pIdx - 1);
+                    PacienteEntity ps = pacientes.get(pIdx);
                     CitaEntity c = isEdit ? cita : new CitaEntity();
                     c.pacienteId = ps.id;
                     c.pacienteNombre = ps.nombre + " " + ps.apellido;
@@ -182,7 +177,7 @@ public class CitasFragment extends Fragment implements CitasAdapter.OnCitaClickL
                     c.fecha = fechaSeleccionada[0];
                     c.hora = horaSeleccionada[0];
                     c.notas = d.etNotas.getText().toString().trim();
-                    c.estado = (String) d.spEstado.getSelectedItem();
+                    c.estado = d.spEstado.getText().toString();
 
                     Executors.newSingleThreadExecutor().execute(() -> {
                         if (isEdit) db.citaDao().update(c);

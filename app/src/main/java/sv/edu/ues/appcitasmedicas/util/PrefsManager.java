@@ -2,7 +2,6 @@ package sv.edu.ues.appcitasmedicas.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import androidx.appcompat.app.AppCompatDelegate;
 
 public class PrefsManager {
     private static final String PREFS="AppCitasMedicasPrefs";
@@ -29,8 +28,6 @@ public class PrefsManager {
 
     public void setDarkMode(boolean enabled){
         prefs.edit().putBoolean("dark_mode",enabled).apply();
-        AppCompatDelegate.setDefaultNightMode(enabled?
-                AppCompatDelegate.MODE_NIGHT_YES:AppCompatDelegate.MODE_NIGHT_NO);
     }
 
     public boolean isDarkMode(){return prefs.getBoolean("dark_mode",false);}

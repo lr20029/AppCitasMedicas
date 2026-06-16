@@ -10,22 +10,19 @@
         android:orientation="vertical"
         android:padding="20dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Paciente"
-            android:textSize="12sp"
-            android:textColor="?attr/colorPrimary"
-            android:textStyle="bold"
-            android:layout_marginBottom="4dp"/>
-
-        <Spinner
-            android:id="@+id/spPaciente"
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:background="@drawable/bg_rounded_accent"
-            android:padding="8dp"
-            android:layout_marginBottom="12dp"/>
+            android:layout_height="wrap_content"
+            android:hint="Paciente"
+            android:layout_marginBottom="12dp">
+            <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                android:id="@+id/spPaciente"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:inputType="none"
+                android:padding="8dp"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             style="@style/MediCareInput"
@@ -116,22 +113,19 @@
                 android:paddingEnd="16dp"/>
         </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Estado"
-            android:textSize="12sp"
-            android:textColor="?attr/colorPrimary"
-            android:textStyle="bold"
-            android:layout_marginBottom="4dp"/>
-
-        <Spinner
-            android:id="@+id/spEstado"
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:background="@drawable/bg_rounded_accent"
-            android:padding="8dp"
-            android:layout_marginBottom="12dp"/>
+            android:layout_height="wrap_content"
+            android:hint="Estado"
+            android:layout_marginBottom="12dp">
+            <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                android:id="@+id/spEstado"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:inputType="none"
+                android:padding="8dp"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             style="@style/MediCareInput"

@@ -3,7 +3,7 @@ package sv.edu.ues.appcitasmedicas.ui.fragments;
 import android.os.Bundle;
 import android.text.*;
 import android.view.*;
-import android.widget.Toast;
+import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
@@ -64,13 +64,42 @@ public class PacientesFragment extends Fragment implements PacientesAdapter.OnPa
     private void showPacienteDialog(@Nullable PacienteEntity paciente){
         DialogPacienteBinding d=DialogPacienteBinding.inflate(getLayoutInflater());
         boolean isEdit=paciente!=null;
+
+        String hoy = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
+
         if(isEdit){
             d.etNombre.setText(paciente.nombre); d.etApellido.setText(paciente.apellido);
             d.etDui.setText(paciente.dui); d.etFechaNac.setText(paciente.fechaNacimiento);
             d.etTelefono.setText(paciente.telefono); d.etEmail.setText(paciente.email);
             d.etDireccion.setText(paciente.direccion); d.etTipoSangre.setText(paciente.tipoSangre);
             d.etAlergias.setText(paciente.alergias);
+        } else {
+            d.etFechaNac.setText(hoy);
         }
+
+        String[] tiposSangre = {"O+", "O-", "A+", "A-", "B+", "B-", "AB+", "AB-"};
+        ArrayAdapter<String> tsAdapter = new ArrayAdapter<>(requireContext(),
+                android.R.layout.simple_spinner_dropdown_item, tiposSangre);
+        d.etTipoSangre.setAdapter(tsAdapter);
+
+        d.etFechaNac.setOnClickListener(v -> {
+            Calendar cal = Calendar.getInstance();
+            try {
+                Date fecha = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+                        .parse(d.etFechaNac.getText().toString());
+                if (fecha != null) cal.setTime(fecha);
+            } catch (Exception ignored) {}
+            new android.app.DatePickerDialog(requireContext(),
+                    (view, year, month, day) -> {
+                        String fecha = String.format(Locale.getDefault(),
+                                "%02d/%02d/%04d", day, month + 1, year);
+                        d.etFechaNac.setText(fecha);
+                    },
+                    cal.get(Calendar.YEAR),
+                    cal.get(Calendar.MONTH),
+                    cal.get(Calendar.DAY_OF_MONTH)
+            ).show();
+        });
         new AlertDialog.Builder(requireContext(),R.style.MediCareDialog)
                 .setTitle(isEdit?"Editar Paciente":"Nuevo Paciente").setView(d.getRoot())
                 .setPositiveButton(getString(R.string.save),(dl,w)->{

@@ -91,6 +91,7 @@ public class MainActivity extends AppCompatActivity
         else if (id == R.id.nav_citas) loadFragment(new CitasFragment());
         else if (id == R.id.nav_pacientes) loadFragment(new PacientesFragment());
         else if (id == R.id.nav_expedientes) loadFragment(new ExpedientesFragment());
+        else if (id == R.id.nav_perfil) loadFragment(new PerfilFragment());
         else if (id == R.id.nav_logout) showLogoutDialog();
         binding.drawerLayout.closeDrawer(GravityCompat.START);
         return true;

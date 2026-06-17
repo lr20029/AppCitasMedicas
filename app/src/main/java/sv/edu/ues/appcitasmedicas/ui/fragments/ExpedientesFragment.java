@@ -63,7 +63,7 @@ public class ExpedientesFragment extends Fragment implements ExpedientesAdapter.
             d.etPeso.setText(String.valueOf(expediente.peso));
             d.etTalla.setText(String.valueOf(expediente.talla));
         } else {
-            d.etNumeroExp.setText("EXP-"+new SimpleDateFormat("yyyyMMddHHmm",Locale.getDefault()).format(new Date()));
+            d.etNumeroExp.setText("EXP-"+new SimpleDateFormat("yyyyMMddHHmmss",Locale.getDefault()).format(new Date()));
         }
         List<String> nombres=new ArrayList<>(); nombres.add("Seleccionar paciente...");
         int idx=0;

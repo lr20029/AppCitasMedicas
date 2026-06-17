@@ -123,7 +123,7 @@
                     android:id="@+id/tvRegister"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="No tienes cuenta? Registrate"
+                    android:text="¿No tienes cuenta? Regístrate"
                     android:textColor="?attr/colorPrimary"
                     android:textAlignment="center"
                     android:padding="8dp"

@@ -16,7 +16,9 @@
                 android:id="@+id/ivAvatarPerfil" android:layout_width="80dp"
                 android:layout_height="80dp" android:src="@drawable/ic_person"
                 android:background="@drawable/bg_avatar_circle" android:padding="16dp"
-                android:layout_marginBottom="12dp"/>
+                android:layout_marginBottom="12dp" android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackgroundBorderless"/>
 
             <TextView android:id="@+id/tvNombrePerfil" android:layout_width="wrap_content"
                 android:layout_height="wrap_content" android:text="Dr. Usuario"

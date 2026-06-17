@@ -155,6 +155,7 @@ public class CitasFragment extends Fragment implements CitasAdapter.OnCitaClickL
                 .setPositiveButton(getString(R.string.save), (dl, w) -> {
                     String motivo = d.etMotivo.getText().toString().trim();
                     String pacNombre = d.spPaciente.getText().toString().trim();
+                    String estado = d.spEstado.getText().toString().trim();
                     int pIdx = -1;
                     for (int i = 0; i < pacientes.size(); i++) {
                         String n = pacientes.get(i).nombre + " " + pacientes.get(i).apellido;
@@ -162,7 +163,7 @@ public class CitasFragment extends Fragment implements CitasAdapter.OnCitaClickL
                     }
 
                     if (motivo.isEmpty() || fechaSeleccionada[0].isEmpty()
-                            || horaSeleccionada[0].isEmpty() || pIdx < 0) {
+                            || horaSeleccionada[0].isEmpty() || pIdx < 0 || estado.isEmpty()) {
                         Toast.makeText(requireContext(),
                                 getString(R.string.error_empty),
                                 Toast.LENGTH_SHORT).show();
@@ -177,7 +178,7 @@ public class CitasFragment extends Fragment implements CitasAdapter.OnCitaClickL
                     c.fecha = fechaSeleccionada[0];
                     c.hora = horaSeleccionada[0];
                     c.notas = d.etNotas.getText().toString().trim();
-                    c.estado = d.spEstado.getText().toString();
+                    c.estado = estado;
 
                     Executors.newSingleThreadExecutor().execute(() -> {
                         if (isEdit) db.citaDao().update(c);

@@ -56,7 +56,8 @@ public class MainActivity extends AppCompatActivity
                 binding.getRoot().findViewById(R.id.switchDarkModeDrawer);
         if (switchDark != null) {
             switchDark.setChecked(prefs.isDarkMode());
-            switchDark.setOnCheckedChangeListener((b, isChecked) -> {
+            switchDark.setOnClickListener(v -> {
+                boolean isChecked = switchDark.isChecked();
                 prefs.setDarkMode(isChecked);
                 AppCompatDelegate.setDefaultNightMode(isChecked ?
                         AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_NO);

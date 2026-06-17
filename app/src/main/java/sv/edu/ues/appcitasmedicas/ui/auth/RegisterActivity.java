@@ -14,11 +14,18 @@ import sv.edu.ues.appcitasmedicas.R;
 import sv.edu.ues.appcitasmedicas.databinding.ActivityRegisterBinding;
 import sv.edu.ues.appcitasmedicas.db.AppDatabase;
 import sv.edu.ues.appcitasmedicas.db.entity.UsuarioEntity;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class RegisterActivity extends AppCompatActivity {
     private ActivityRegisterBinding binding;
     private AppDatabase db;
     private final ExecutorService executor = Executors.newSingleThreadExecutor();
+
+    private static final String EMAIL_REGEX =
+            "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+
+    private static final Pattern pattern = Pattern.compile(EMAIL_REGEX);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +48,9 @@ public class RegisterActivity extends AppCompatActivity {
         }
         if (!password.equals(confirm)) {
             binding.tilConfirmPassword.setError("Las contraseñas no coinciden"); return;
+        }
+        if (!isValid(email)){
+            binding.tilEmailReg.setError("El correo electrónico no es válido"); return;
         }
         binding.progressRegister.setVisibility(View.VISIBLE);
         binding.btnRegister.setEnabled(false);
@@ -67,4 +77,12 @@ public class RegisterActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() { super.onDestroy(); executor.shutdown(); }
+
+    public static boolean isValid(String email) {
+        if (email == null) {
+            return false;
+        }
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
+    }
 }
